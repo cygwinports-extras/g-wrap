@@ -1,0 +1,17 @@
+DESCRIPTION="Guile C function wrapper"
+HOMEPAGE="http://www.nongnu.org/g-wrap/"
+SRC_URI="http://download.savannah.gnu.org/releases/${PN}/${P}.tar.gz"
+#         http://download.savannah.gnu.org/releases/${PN}/${P}.tar.gz.sig
+
+# force use of included libffi
+CYGCONF_ARGS="--disable-static ac_cv_header_ffi_h=no"
+MAKEOPTS+=" -j1"
+
+src_install() {
+	cd ${B}
+	cyginstall
+
+	rm -f ${D}/usr/bin/cygffi-?.dll ${D}/usr/lib/libffi.*
+	mv ${D}/usr/include/ffi*.h ${D}/usr/include/g-wrap/
+	sed -i -e 's#<ffi#<g-wrap/ffi#' ${D}/usr/include/g-wrap/ffi*.h
+}
