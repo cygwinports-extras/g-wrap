@@ -1,5 +1,5 @@
 category: Scheme
-requires: cygwin guile-lib libguile17
+requires: guile-lib libguile17
 sdesc: "Guile language wrapper library"
 ldesc: "G-Wrap is a tool (and guile library) for generating function 
 wrappers for inter-language calls. It currently only supports generating 
